@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.mule.api.annotations.param.*;
+
 public class MuleComponent {
 
 	public Map<String, String> processMap(Map<String, String> input) {
@@ -21,7 +23,7 @@ public class MuleComponent {
 	}
 
 	public Map<String, String> processString(String input) {
-		Map<String,String> output = new HashMap<String,String>();
+		Map<String, String> output = new HashMap<String, String>();
 		output.put("message", input);
 		output.put("processedBy", "processString");
 		return output;
@@ -30,6 +32,14 @@ public class MuleComponent {
 	public Map<String, String> processString2() {
 		// processString2 implementation
 		return null;
+	}
+
+	public Map<String, String> processAll(@Payload Object input, @InboundHeaders("http.method") String method) {
+		Map<String, String> output = new HashMap<String, String>();
+		output.put("message", input.toString());
+		output.put("http.method", method);
+		output.put("processedBy", "processAll");
+		return output;
 	}
 
 }
