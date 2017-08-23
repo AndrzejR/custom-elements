@@ -1,5 +1,7 @@
 package com.mulesoft.training;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MuleComponent {
@@ -9,14 +11,20 @@ public class MuleComponent {
 		return input;
 	}
 
-	public Map<String, String> processArray() {
-		// processArray implementation
-		return null;
+	public Map<String, String> processArray(List<String> input) {
+		Map<String, String> output = new HashMap<String, String>();
+		for (String message : input) {
+			output.put("message", message);
+		}
+		output.put("processedBy", "processArray");
+		return output;
 	}
 
-	public Map<String, String> processString() {
-		// processString implementation
-		return null;
+	public Map<String, String> processString(String input) {
+		Map<String,String> output = new HashMap<String,String>();
+		output.put("message", input);
+		output.put("processedBy", "processString");
+		return output;
 	}
 
 	public Map<String, String> processString2() {
